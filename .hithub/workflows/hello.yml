@@ -1,0 +1,11 @@
+name: PR Workflow
+
+on:
+  pull_request:
+
+jobs:
+  check-pr:
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: echo "Workflow is working on Pull Request!"
