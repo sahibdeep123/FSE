@@ -1,0 +1,24 @@
+name: My first WorkFlow
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  say-hello:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print message
+        run: |
+          echo "Hello, Github Action!"
+          echo "Testing pr setup"
+
+  say-bye:
+    needs: say-hello
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print message
+        run: |
+          echo "bye from 2nd job"
