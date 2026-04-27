@@ -28,12 +28,29 @@ on:
   push:
 
 jobs:
-  test:
+  job1:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code   # clone the repo
-        uses: actions/checkout@v4
+      - name: create a file   # clone the repo
+        run: echo "Hello world" > file.txt
+      - name: upload on artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-file
+          path: file.txt
+  job2:
+    needs: job1
+    runs-on: ubuntu-latest
+    steps:
+      - name: download a file
+        uses: actions/download-artifact@v4
+        with:
+          name: my-file
 
-      - name: List files
-        run: ls
+        #add a step to read file.txt
+      - name: read file.txt
+        run: cat file.txt
+      
+      
+
+    
